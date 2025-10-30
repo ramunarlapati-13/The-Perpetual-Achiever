@@ -98,6 +98,25 @@
         .dark-mode-toggle:hover {
             transform: scale(1.05);
         }
+
+        /* --- FIXED TOC STYLES --- */
+        /* Apply fixed positioning only on medium screens and larger */
+        @media (min-width: 768px) {
+            .toc-fixed {
+                position: fixed;
+                top: 32px; /* md:top-8 from original */
+                /* Calculate width dynamically based on the max-w-7xl grid used in the wrapper */
+                /* This ensures it aligns with the grid column it occupies (col-span-3) */
+                width: 25%; /* Approximation for col-span-3 in a 12-column grid */
+                max-width: 280px; /* Use max-width for better control on larger screens if desired */
+                height: calc(100vh - 64px); /* Full viewport height minus top and bottom margin/padding */
+            }
+
+            .toc-content-scroll {
+                max-height: 100%;
+                overflow-y: auto;
+            }
+        }
     </style>
     <script>
         // Function to update the icon and button style based on the current mode
@@ -185,10 +204,11 @@
     <!-- Main Wrapper Grid for Content and TOC -->
     <div class="max-w-7xl mx-auto md:grid md:grid-cols-12 gap-8 px-4 sm:px-6 lg:px-8 pb-8">
         
-        <!-- TOC Sidebar (Hidden on Mobile, Sticky on Desktop) -->
-        <aside id="toc-sidebar" class="md:col-span-3 hidden md:block md:sticky md:top-8 self-start h-full p-0">
-            <!-- Apply glass-container class and remove default bg-white/shadow-lg/border -->
-            <div class="glass-container p-6 rounded-xl">
+        <!-- TOC Sidebar (FIXED Position on Desktop) -->
+        <!-- Note: We keep md:col-span-3 here to reserve the space in the grid, but use custom CSS class 'toc-fixed' for actual positioning. -->
+        <aside id="toc-sidebar" class="md:col-span-3 hidden md:block md:sticky md:top-8 self-start p-0 md:static">
+            <!-- New: The fixed position is applied here via the custom 'toc-fixed' class which uses media queries. -->
+            <div class="glass-container p-6 rounded-xl md:max-h-[calc(100vh-4rem)] md:overflow-y-auto toc-fixed toc-content-scroll">
      
                 <h2 class="text-xl font-bold mb-4 text-indigo-700">Table of Contents</h2>
                 <nav class="space-y-2 text-sm">
@@ -491,7 +511,7 @@ transition">
                     <p class="text-sm italic">An engineering student, **Siddharth**, struggled with late-night cramming. He implemented Time Blocking based on his WBS (Chapter 2).</p>
                     <ul class="list-disc ml-6 mt-3 space-y-2 text-sm">
                         <li>**The Shift:** He blocked 9:00 AM – 12:00 PM daily for "High-Value Coding Practice" (his Level 4 Input Goal). He blocked 6:00 PM – 7:00 PM for "Email and Communication."</li>
-                        <li>**The Result:** By moving high-value work to his morning Peak Energy Zone and batching low-value tasks, he completed more in the first three hours than he previously did all day. The scheduled breaks also prevented burnout, proving that structured time creates freedom.</li>
+                        <li>**Result:** By moving high-value work to his morning Peak Energy Zone and batching low-value tasks, he completed more in the first three hours than he previously did all day. The scheduled breaks also prevented burnout, proving that structured time creates freedom.</li>
                     </ul>
                 </div>
 
