@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { Sun, Moon, ArrowLeft, ArrowRight, BookOpen, Compass, Clock, Target, Shield, AlertTriangle, RefreshCw, Signpost, BarChart2, Award } from "lucide-react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { bookChapters } from "@/data/chapters";
-import { MorphingCardStack, CardData } from "@/components/ui/morphing-card-stack";
+import { MorphingCardStack } from "@/components/ui/morphing-card-stack";
 
 export function BookViewer() {
     const [isDarkMode, setIsDarkMode] = useState(false);

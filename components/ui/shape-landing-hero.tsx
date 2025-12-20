@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { Circle } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { SpotlightText } from "@/components/ui/spotlight-text";
 
 const fadeUpVariants = {
     hidden: { opacity: 0, y: 30 },
