@@ -25,7 +25,7 @@ export const SpotlightText = ({ children, className = "" }: { children: React.Re
             className={cn("relative inline-block cursor-default select-none group", className)}
         >
             {/* Base Text - Dimmed/Ghost */}
-            <span className="text-transparent bg-clip-text bg-gradient-to-b from-white/20 to-white/10 dark:from-white/20 dark:to-white/10 blur-[1px] transition-all duration-500 group-hover:blur-0 group-hover:first:text-white/50">
+            <span className="text-transparent bg-clip-text bg-gradient-to-b from-neutral-800/80 to-neutral-800/60 dark:from-white/20 dark:to-white/10 blur-[1px] transition-all duration-500 group-hover:blur-0 group-hover:first:text-neutral-900 dark:group-hover:first:text-white/50">
                 {children}
             </span>
 

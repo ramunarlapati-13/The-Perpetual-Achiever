@@ -48,7 +48,7 @@ export default function Home() {
                 title1={
                     <>
                         <SpotlightText>The Perpetual Achiever</SpotlightText>
-                        <span className="block text-lg md:text-2xl text-white/50 mt-2 font-light tracking-wider text-center mx-auto">
+                        <span className="block text-lg md:text-2xl text-gray-500 dark:text-white/50 mt-2 font-light tracking-wider text-center mx-auto">
                             Written By Ramu Narlapati
                         </span>
                     </>
@@ -63,9 +63,9 @@ export default function Home() {
                 className="mt-[-50px] z-20 relative mb-20"
             >
                 <Link to="/book">
-                    <button className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full bg-white/10 dark:bg-zinc-900 border border-white/20 dark:border-zinc-800 px-8 font-medium text-white shadow-2xl transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:w-auto">
-                        <span className="mr-2 text-indigo-100 dark:text-cyan-100 font-semibold tracking-wide">Start Reading</span>
-                        <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                    <button className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full bg-white dark:bg-zinc-900 border border-indigo-200 dark:border-zinc-800 px-8 font-medium shadow-2xl transition-all duration-300 hover:bg-indigo-50 dark:hover:bg-white/20 hover:scale-105 hover:w-auto">
+                        <span className="mr-2 text-indigo-900 dark:text-cyan-100 font-semibold tracking-wide">Start Reading</span>
+                        <ArrowRight className="h-4 w-4 text-indigo-900 dark:text-cyan-100 transition-transform duration-300 group-hover:translate-x-1" />
                         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                     </button>
                 </Link>
@@ -79,7 +79,7 @@ export default function Home() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
                 >
-                    <h2 className="text-3xl font-bold text-center text-white/90 mb-12">Explore the Book</h2>
+                    <h2 className="text-3xl font-bold text-center text-indigo-900 dark:text-white/90 mb-12">Explore the Book</h2>
 
                     <MorphingCardStack
                         cards={bookChapters.map(ch => ({
