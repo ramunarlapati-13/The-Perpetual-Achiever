@@ -1,11 +1,29 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { cn } from "@/lib/utils";
 import { Sun, Moon, ArrowLeft, ArrowRight, BookOpen, Compass, Clock, Target, Shield, AlertTriangle, RefreshCw, Signpost, BarChart2, Award } from "lucide-react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { bookChapters } from "@/data/chapters";
 import { MorphingCardStack } from "@/components/ui/morphing-card-stack";
+
+// Helper to get icons for chapters
+const getChapterIcon = (id: string) => {
+    switch (id) {
+        case 'preface': return <BookOpen size={18} />;
+        case 'ch1': return <Compass size={18} />;
+        case 'ch2': return <Signpost size={18} />;
+        case 'ch3': return <Clock size={18} />;
+        case 'ch4': return <RefreshCw size={18} />;
+        case 'ch5': return <Shield size={18} />;
+        case 'ch6': return <AlertTriangle size={18} />;
+        case 'ch7': return <Target size={18} />;
+        case 'ch8': return <Signpost size={18} />;
+        case 'ch9': return <BarChart2 size={18} />;
+        case 'ch10': return <Award size={18} />;
+        default: return <BookOpen size={18} />;
+    }
+};
 
 export function BookViewer() {
     const [isDarkMode, setIsDarkMode] = useState(false);
@@ -49,24 +67,15 @@ export function BookViewer() {
         else document.documentElement.classList.remove("dark");
     };
 
-    // Helper to get icons for chapters
-    const getChapterIcon = (id: string) => {
-        switch (id) {
-            case 'preface': return <BookOpen size={18} />;
-            case 'ch1': return <Compass size={18} />;
-            case 'ch2': return <Signpost size={18} />;
-            case 'ch3': return <Clock size={18} />;
-            case 'ch4': return <RefreshCw size={18} />;
-            case 'ch5': return <Shield size={18} />;
-            case 'ch6': return <AlertTriangle size={18} />;
-            case 'ch7': return <Target size={18} />;
-            case 'ch8': return <Signpost size={18} />;
-            case 'ch9': return <BarChart2 size={18} />;
-            case 'ch10': return <Award size={18} />;
-            default: return <BookOpen size={18} />;
-        }
-    };
-
+    const memoizedCards = useMemo(() => {
+        return bookChapters.map(ch => ({
+            id: ch.id,
+            title: ch.title.split(":")[0], // Short title for card
+            description: ch.part,
+            icon: getChapterIcon(ch.id),
+            path: `/book/${ch.id}`
+        }));
+    }, []);
 
     return (
         <div className={cn("min-h-screen transition-colors duration-500 bg-transparent text-gray-900 dark:text-gray-100")}>
@@ -98,13 +107,7 @@ export function BookViewer() {
                         <h2 className="text-xl font-bold mb-4 px-2 text-indigo-900 dark:text-white transition-colors">Table of Contents</h2>
 
                         <MorphingCardStack
-                            cards={bookChapters.map(ch => ({
-                                id: ch.id,
-                                title: ch.title.split(":")[0], // Short title for card
-                                description: ch.part,
-                                icon: getChapterIcon(ch.id),
-                                path: `/book/${ch.id}`
-                            }))}
+                            cards={memoizedCards}
                             activeId={currentChapterId}
                             defaultLayout="list"
                             onCardClick={(card) => navigate(`/book/${card.id}`)}
