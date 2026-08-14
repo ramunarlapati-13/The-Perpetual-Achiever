@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, type ReactNode } from "react"
+import { useState } from "react"
 import { motion, AnimatePresence, LayoutGroup, type PanInfo } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { Grid3X3, Layers, LayoutList } from "lucide-react"
@@ -11,7 +11,7 @@ export interface CardData {
     id: string
     title: string
     description: string
-    icon?: ReactNode
+    icon?: React.ReactNode
     color?: string
     // Additional props for navigation
     path?: string
