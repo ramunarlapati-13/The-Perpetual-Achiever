@@ -13,6 +13,7 @@ import {
     BarChart2,
     Award
 } from "lucide-react";
+import { useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { bookChapters } from "@/data/chapters";
 import { MorphingCardStack } from "@/components/ui/morphing-card-stack";
@@ -41,6 +42,14 @@ import { SpotlightText } from "@/components/ui/spotlight-text";
 
 export default function Home() {
     const navigate = useNavigate();
+
+    const cards = useMemo(() => bookChapters.map(ch => ({
+        id: ch.id,
+        title: ch.title.split(":")[0],
+        description: ch.title.split(":").slice(1).join(":").trim() || ch.part,
+        icon: getChapterIcon(ch.id),
+        path: `/book/${ch.id}`
+    })), []);
 
     return (
         <div className="relative min-h-screen flex flex-col items-center overflow-x-hidden pt-32 md:pt-40">
@@ -82,13 +91,7 @@ export default function Home() {
                     <h2 className="text-3xl font-bold text-center text-indigo-900 dark:text-white/90 mb-12">Explore the Book</h2>
 
                     <MorphingCardStack
-                        cards={bookChapters.map(ch => ({
-                            id: ch.id,
-                            title: ch.title.split(":")[0],
-                            description: ch.title.split(":").slice(1).join(":").trim() || ch.part,
-                            icon: getChapterIcon(ch.id),
-                            path: `/book/${ch.id}`
-                        }))}
+                        cards={cards}
                         defaultLayout="grid"
                         onCardClick={(card) => navigate(`/book/${card.id}`)}
                         className="max-w-4xl mx-auto"
